@@ -8,6 +8,7 @@ use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FactoryController;
 use App\Http\Controllers\FactoryProductController;
 use App\Http\Controllers\GovernorateController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ShopProductController;
 use App\Http\Controllers\UserController;
@@ -143,3 +144,9 @@ use Illuminate\Support\Facades\Route;
 
 
 
+          Route::controller(MessageController::class)->prefix('/chat/')->group(function () {
+            Route::post('/send','SendMessage');
+            Route::post('/chat', [MessageController::class, 'chatForm']);
+            Route::post('/messages', 'getMessages');
+
+        });
